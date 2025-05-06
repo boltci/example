@@ -5,8 +5,13 @@ on:
   workflow_dispatch:
 
 jobs:
-  laravel-tests:
+  dockerfile-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call out to docker image
+        uses: "docker://ghcr.io/boltci/boltci:0.0.1"
 
+  laravel-tests:
     runs-on: ubuntu-latest
 
     steps:
