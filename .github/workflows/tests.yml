@@ -10,6 +10,9 @@ jobs:
     steps:
       - name: Call out to docker image
         uses: "docker://ghcr.io/boltci/boltci:0.0.2"
+        with:
+          args: "Matt"
+
 
   laravel-tests:
     runs-on: ubuntu-latest
