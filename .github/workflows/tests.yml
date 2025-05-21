@@ -7,13 +7,19 @@ on:
 jobs:
   composite-action-test:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        chunk: [1, 2, 3, 4, 5]
     steps:
-      - name: Check out repository
+      - name: Call BoltCI's Action
         uses: boltci/action@main
+        with:
+          index: ${{ matrix.chunk }}
+          chunks: 5
 
   laravel-tests:
     runs-on: ubuntu-latest
-
     steps:
     - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
       with:
