@@ -11,16 +11,6 @@ jobs:
       - name: Check out repository
         uses: boltci/action@main
 
-  dockerfile-test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-      - name: Call out to docker image
-        uses: "docker://ghcr.io/boltci/boltci:0.0.7"
-        with:
-          args: "Matt"
-
   laravel-tests:
     runs-on: ubuntu-latest
 
