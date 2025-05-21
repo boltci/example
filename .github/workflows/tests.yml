@@ -5,6 +5,12 @@ on:
   workflow_dispatch:
 
 jobs:
+  composite-action-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: boltci/action@main
+
   dockerfile-test:
     runs-on: ubuntu-latest
     steps:
