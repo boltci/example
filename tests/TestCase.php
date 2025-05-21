@@ -9,7 +9,7 @@ use PHPUnit\Framework\Attributes\Test;
 abstract class TestCase extends BaseTestCase
 {
     #[Test, DataProvider('provider')]
-    public function it_works($index): void
+    public function it_works(): void
     {
         usleep(10 * 1000);
 
