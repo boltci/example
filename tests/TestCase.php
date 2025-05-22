@@ -18,6 +18,6 @@ abstract class TestCase extends BaseTestCase
 
     public static function provider(): array
     {
-        return array_fill(0, 100, []);
+        return array_fill(0, random_int(50, 100), []);
     }
 }
