@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo "Configuring repo for BoltCI..."
+
+cp .env.example .env
