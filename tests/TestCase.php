@@ -9,7 +9,7 @@ use PHPUnit\Framework\Attributes\Test;
 abstract class TestCase extends BaseTestCase
 {
     #[Test, DataProvider('provider')]
-    public function it_works(): void
+    public function it_works($foo): void
     {
         usleep(10 * 1000);
 
@@ -18,6 +18,8 @@ abstract class TestCase extends BaseTestCase
 
     public static function provider(): array
     {
-        return array_fill(0, 100, []);
+        return array_fill(0, 100, [
+            'foo' => 'bar',
+        ]);
     }
 }
