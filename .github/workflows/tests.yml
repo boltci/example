@@ -26,4 +26,5 @@ jobs:
           max-processes: ${{ env.MAX_PROCESSES }}
           image: ghcr.io/boltci/boltci:${{ env.IMAGE_VERSION }}
           secrets: |
-            {\"foo\": \"${{ secrets.FOO }}\"}
+            FOO=${{ secrets.FOO }}
+            ANOTHER=VALUE
