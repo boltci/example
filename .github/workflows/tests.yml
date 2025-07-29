@@ -19,12 +19,9 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Call BoltCI's Action
-        uses: boltci/action@test-secrets-v3
+        uses: boltci/action@1.0.25
         with:
           index: ${{ matrix.chunk }}
           chunks: ${{ env.CHUNKS }}
           max-processes: ${{ env.MAX_PROCESSES }}
           image: ghcr.io/boltci/boltci:${{ env.IMAGE_VERSION }}
-          secrets:
-            FOO=${{ secrets.FOO }}
-            BAR=BAZ
