@@ -25,6 +25,6 @@ jobs:
           chunks: ${{ env.CHUNKS }}
           max-processes: ${{ env.MAX_PROCESSES }}
           image: ghcr.io/boltci/boltci:${{ env.IMAGE_VERSION }}
-          secrets: |
+          secrets:
             FOO=${{ secrets.FOO }}
-            ANOTHER=VALUE
+            BAR=BAZ
