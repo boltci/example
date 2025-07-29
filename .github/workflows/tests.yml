@@ -12,7 +12,7 @@ jobs:
       matrix:
         chunk: [1, 2, 3]
     env:
-      IMAGE_VERSION: '6c81c29b-b08e-4df1-94c8-b27f85d037e9'
+      IMAGE_VERSION: 'd37c8bb6-a2ac-429e-a5c8-8b5180e1a98d'
       CHUNKS: 3
       MAX_PROCESSES: 2
     steps:
