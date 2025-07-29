@@ -25,4 +25,5 @@ jobs:
           chunks: ${{ env.CHUNKS }}
           max-processes: ${{ env.MAX_PROCESSES }}
           image: ghcr.io/boltci/boltci:${{ env.IMAGE_VERSION }}
-          secrets: '{"foo": ${{ secrets.FOO }}}'
+          secrets: |
+            {"foo": "${{ secrets.FOO }}"}
