@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Call BoltCI's Action
-        uses: boltci/action@test-secrets-v2
+        uses: boltci/action@test-secrets-v3
         with:
           index: ${{ matrix.chunk }}
           chunks: ${{ env.CHUNKS }}
