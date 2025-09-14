@@ -1,0 +1,13 @@
+base: ubuntu:24.04
+
+services:
+  php:
+    version: "8.3"
+  mysql:
+    version: "8.0"
+    databases:
+      - laravel
+
+hooks:
+  after-composer-install:
+    - cp .env.example .env
