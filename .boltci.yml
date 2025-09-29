@@ -11,3 +11,5 @@ services:
 hooks:
   after-composer-install:
     - cp .env.example .env
+
+max-processes-per-runner: 2
