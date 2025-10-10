@@ -8,8 +8,10 @@ services:
     databases:
       - laravel
 
-hooks:
-  after-composer-install:
-    - cp .env.example .env
+steps:
+  watch(composer.lock,composer.json): composer install --no-progress --optimize-autoloader --apcu-autoloader
+  watch(.env.example): cp .env.ci .env && php artisan key:generate
+  watch(routes/*.php): php artisan route:cache
+  watch(database/migrations/*.php): php artisan migrate --force
 
 max-processes-per-runner: 2
