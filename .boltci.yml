@@ -1,9 +1,10 @@
+name: Backend Tests
+
+on: push
+
 base: ubuntu:24.04
 
-on:
-  push
-
-services:
+dependencies:
   php:
     version: "8.3"
   mysql:
