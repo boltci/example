@@ -8,7 +8,7 @@ dependencies:
   php:
     version: "8.3"
   mysql:
-    version: "5.7"
+    version: "8.0"
     username: "root"
     password: ""
     databases:
