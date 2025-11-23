@@ -1,0 +1,22 @@
+name: Dependent Workflow
+
+on:
+  check_run:
+    types: [completed]
+
+jobs:
+  run-if-check-passed:
+    if: >
+      github.event.check_run.name == 'Backend Tests' &&
+      github.event.check_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Backend Tests passed! Running dependent workflow..."
+
+  run-if-check-failed:
+    if: >
+      github.event.check_run.name == 'Backend Tests' &&
+      github.event.check_run.conclusion != 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Backend Tests failed. Skipping dependent workflow."
