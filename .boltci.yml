@@ -26,6 +26,8 @@ run:
   install_dependencies:
     watch: composer.lock,composer.json
     run: composer install --no-progress --optimize-autoloader --apcu-autoloader
+      && php artisan shards:patch-phpunit
+      && php artisan shards:patch-paratest
 
   setup_environment:
     watch: .env.example
