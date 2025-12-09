@@ -43,6 +43,6 @@ run:
     run: php artisan route:cache
 
   run_tests:
-    run: SHARD=$BOLTCI_SHARD php artisan test --parallel --functional
+    run: SHARD=$BOLTCI_SHARD php artisan test --parallel --functional --processes=$BOLTCI_PROCESSES
 
 
