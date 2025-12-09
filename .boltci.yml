@@ -2,9 +2,9 @@ name: Backend Tests
 
 on: push
 
-base: ubuntu:24.04
+use: ubuntu:24.04
 
-dependencies:
+setup:
   php:
     version: "8.3"
   mysql:
@@ -14,18 +14,33 @@ dependencies:
     databases:
       - laravel
 
-steps:
-  watch(composer.lock,composer.json):
-    composer install --no-progress --optimize-autoloader --apcu-autoloader
+configure:
+  max_processes_per_runner: 2
 
-  watch(.env.example):
-    cp .env.example .env
-    && php artisan key:generate
+preheat:
+  extend: run
+  run_tests:
+      run: SHARD=1/50 php artisan test --parallel --functional
 
-  watch(routes/*.php):
-    php artisan route:cache
+run:
+  install_dependencies:
+    watch: composer.lock,composer.json
+    run: composer install --no-progress --optimize-autoloader --apcu-autoloader
 
-  watch(database/migrations/*.php):
-    php artisan migrate --force
+  setup_environment:
+    watch: .env.example
+    run: cp .env.example .env
+      && php artisan key:generate
 
-max-processes-per-runner: 2
+  run_migrations:
+    watch: database/migrations/*.php
+    run: php artisan migrate --force
+
+  cache_routes:
+    watch: routes/*.php
+    run: php artisan route:cache
+
+  run_tests:
+    run: SHARD=$BOLTCI_SHARD php artisan test --parallel --functional
+
+
