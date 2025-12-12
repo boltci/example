@@ -20,7 +20,7 @@ configure:
 preheat:
   extend: run
   run_tests:
-      run: SHARD=1/50 php artisan test --parallel --functional
+      run: SHARD=1/50 php artisan test --parallel --functional --processes=$BOLTCI_PROCESSES
 
 run:
   install_dependencies:
