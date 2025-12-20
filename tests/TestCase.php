@@ -18,7 +18,7 @@ abstract class TestCase extends BaseTestCase
     {
         UserFactory::new()->count($writeCount)->create();
 
-        for($i = 0; $i < $readCount; $i++) {
+        for ($i = 0; $i < $readCount; $i++) {
             User::query()->inRandomOrder()->first();
         }
 
