@@ -14,9 +14,6 @@ setup:
     databases:
       - laravel
 
-configure:
-  max_processes_per_runner: 4
-
 preheat:
   extend: run
   run_tests:
