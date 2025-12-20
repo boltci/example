@@ -15,7 +15,7 @@ setup:
       - laravel
 
 configure:
-  max_processes_per_runner: 8
+  max_processes_per_runner: 4
 
 preheat:
   extend: run
