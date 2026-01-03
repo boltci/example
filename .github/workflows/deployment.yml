@@ -41,6 +41,12 @@ jobs:
               ref: sha,
             });
 
+            // Log all check runs to see their exact names
+            console.log('All check runs:');
+            data.check_runs.forEach(check => {
+              console.log(`  - "${check.name}" (${check.status}, ${check.conclusion || 'in progress'})`);
+            });
+
             const prerequisitePassed = data.check_runs.some(
               check => check.name === 'Prerequisite / prerequisite-job (push)' && check.conclusion === 'success'
             );
