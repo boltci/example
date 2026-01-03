@@ -48,13 +48,13 @@ jobs:
             });
 
             const prerequisitePassed = data.check_runs.some(
-              check => check.name === 'Prerequisite / prerequisite-job (push)' && check.conclusion === 'success'
+              check => check.name === 'prerequisite-job' && check.conclusion === 'success'
             );
             const backendTestsPassed = data.check_runs.some(
               check => check.name === 'Backend Tests' && check.conclusion === 'success'
             );
 
-            console.log(`Prerequisite: ${prerequisitePassed ? 'PASSED' : 'NOT PASSED'}`);
+            console.log(`prerequisite-job: ${prerequisitePassed ? 'PASSED' : 'NOT PASSED'}`);
             console.log(`Backend Tests: ${backendTestsPassed ? 'PASSED' : 'NOT PASSED'}`);
 
             return prerequisitePassed && backendTestsPassed;
