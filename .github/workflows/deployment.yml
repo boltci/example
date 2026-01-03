@@ -29,11 +29,11 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const requiredChecks = ['Prerequisite', 'Backend Tests'];
-
             const sha = context.eventName === 'workflow_run'
               ? context.payload.workflow_run.head_sha
               : context.payload.check_run.head_sha;
+
+            console.log(`Checking status for commit: ${sha}`);
 
             const { data } = await github.rest.checks.listForRef({
               owner: context.repo.owner,
@@ -41,9 +41,17 @@ jobs:
               ref: sha,
             });
 
-            return requiredChecks.every(name =>
-              data.check_runs.some(check => check.name === name && check.conclusion === 'success')
+            const prerequisitePassed = data.check_runs.some(
+              check => check.name === 'Prerequisite / prerequisite-job (push)' && check.conclusion === 'success'
             );
+            const backendTestsPassed = data.check_runs.some(
+              check => check.name === 'Backend Tests' && check.conclusion === 'success'
+            );
+
+            console.log(`Prerequisite: ${prerequisitePassed ? 'PASSED' : 'NOT PASSED'}`);
+            console.log(`Backend Tests: ${backendTestsPassed ? 'PASSED' : 'NOT PASSED'}`);
+
+            return prerequisitePassed && backendTestsPassed;
 
       - name: Trigger deployment
         if: steps.check.outputs.result == 'true'
