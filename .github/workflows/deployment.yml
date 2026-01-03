@@ -33,18 +33,10 @@ jobs:
               ? context.payload.workflow_run.head_sha
               : context.payload.check_run.head_sha;
 
-            console.log(`Checking status for commit: ${sha}`);
-
             const { data } = await github.rest.checks.listForRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
               ref: sha,
-            });
-
-            // Log all check runs to see their exact names
-            console.log('All check runs:');
-            data.check_runs.forEach(check => {
-              console.log(`  - "${check.name}" (${check.status}, ${check.conclusion || 'in progress'})`);
             });
 
             const prerequisitePassed = data.check_runs.some(
@@ -53,9 +45,6 @@ jobs:
             const backendTestsPassed = data.check_runs.some(
               check => check.name === 'Backend Tests' && check.conclusion === 'success'
             );
-
-            console.log(`prerequisite-job: ${prerequisitePassed ? 'PASSED' : 'NOT PASSED'}`);
-            console.log(`Backend Tests: ${backendTestsPassed ? 'PASSED' : 'NOT PASSED'}`);
 
             return prerequisitePassed && backendTestsPassed;
 
