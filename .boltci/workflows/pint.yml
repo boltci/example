@@ -9,7 +9,7 @@ setup:
     version: "8.3"
 
 configure:
-  max_cores_per_run: 16
+  max_runners_per_run: 1
 
 preheat:
   extend: run
