@@ -14,6 +14,9 @@ setup:
     databases:
       - laravel
 
+configure:
+  create_github_check_run: false
+
 preheat:
   extend: run
   run_tests:
